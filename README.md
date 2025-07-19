@@ -111,7 +111,7 @@ on the command line versions.
       <https://github.com/open-simh/simh/blob/master/README-CMake.md#cmake-builder-scripts>.
       The clone is in `/usr/local/src/simh` and the simulators in
       `/usr/local/src/simh/BIN`, and
-    - The FPS-100 host-based tools as downloaded from 
+    - The FPS-100 host-based tools downloaded from 
       <https://bitsavers.org/bits/FloatingPointSystems/FPS100/fps100sw.zip> in
       `/usr/local/src/fps100sw`.
 
