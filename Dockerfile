@@ -19,8 +19,11 @@ RUN apt-get update \
   tree \
   unzip \
   vim \
-  wget \
-  && apt-get clean
+  wget
+
+# set up search databases
+RUN updatedb > /dev/null 2>&1 \
+  && apt-file update > /dev/null 2>&1
 
 # define non-root user
 RUN useradd \
