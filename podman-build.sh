@@ -2,8 +2,8 @@
 
 set -e
 
-echo "Quietly building fps-100-resurrection image"
-time podman build --quiet --tag fps-100-resurrection .
+echo "Quietly building fps-100-resurrection Podman image"
+time podman build --tag fps-100-resurrection . > podman-build.log 2>&1
 echo ""
 podman images
 

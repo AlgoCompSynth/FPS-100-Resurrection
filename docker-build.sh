@@ -2,8 +2,8 @@
 
 set -e
 
-echo "Quietly building fps-100-resurrection image"
-time docker build --quiet --tag fps-100-resurrection .
+echo "Quietly building fps-100-resurrection Docker image"
+time docker build --tag fps-100-resurrection . > docker-build.log 2>&1
 echo ""
 docker images
 
