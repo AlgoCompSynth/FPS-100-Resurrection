@@ -13,6 +13,7 @@ RUN apt-get update \
   git \
   lsb-release \
   lynx \
+  ninja-build \
   plocate \
   speedtest-cli \
   sudo \
@@ -32,7 +33,7 @@ RUN git clone https://github.com/open-simh/simh.git \
   && cd simh \
   && sh .travis/deps.sh linux 2>&1 \
     | tee /usr/local/src/deps.log \
-  && cmake/cmake-builder.sh --flavor unix 2>&1 \
+  && cmake/cmake-builder.sh --parallel --flavor ninja 2>&1 \
     | tee /usr/local/src/cmake-builder.log
 
 # define non-root user
