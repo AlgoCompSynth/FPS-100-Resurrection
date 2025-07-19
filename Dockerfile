@@ -9,6 +9,7 @@ RUN apt-get update \
   build-essential \
   curl \
   file \
+  gfortran \
   git \
   lsb-release \
   lynx \
