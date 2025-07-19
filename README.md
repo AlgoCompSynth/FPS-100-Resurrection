@@ -31,7 +31,7 @@ docker run -it fps-100-resurrection
 [Podman](https://podman.io). I test on both, and you can use Windows, MacOS
 or Linux. The image should work on either an `x86_64`/`amd64` host or an
 `aarch64`/`arm64` host. I have a Windows 11 x86_64 host machine, a
-[Universal Blue Bluefin DX](https://projectbluefin.io) Linux host machine,
+[Universal Blue Bluefin DX](https://projectbluefin.io) Linux x86_64 host machine,
 and a 16 GB Raspberry Pi 5 to test on, but no Macintosh of any kind.
 There are desktop editions of both Docker and Podman, but I only test
 on the command line versions.
