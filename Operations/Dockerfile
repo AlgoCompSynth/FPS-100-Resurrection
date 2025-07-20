@@ -23,12 +23,18 @@ RUN apt-get update \
   vim \
   wget
 
-# set up search databases
-RUN updatedb > /dev/null 2>&1 \
-  && apt-file update > /dev/null 2>&1
+# define working directory
+WORKDIR /usr/local/src/
+
+# install starship
+RUN curl --silent --show-error --remote-name \
+  https://starship.rs/install.sh \
+  && chmod +x install.sh \
+  && ./install.sh --yes > /dev/null \
+  && rm --force ./install.sh \
+  && echo 'eval "$(starship init bash)"' >> /etc/skel/.bashrc
 
 # download FPS-100 host software source
-WORKDIR /usr/local/src/
 RUN wget --quiet \
   https://bitsavers.org/bits/FloatingPointSystems/FPS100/fps100sw.zip \
   && unzip fps100sw.zip \
@@ -53,6 +59,10 @@ RUN useradd \
   --user-group \
   array && \
   echo "array:processor" | chpasswd 
+
+# set up search databases
+RUN updatedb > /dev/null 2>&1 \
+  && apt-file update > /dev/null 2>&1
 
 WORKDIR /home/array
 USER array
