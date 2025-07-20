@@ -18,7 +18,9 @@ echo ""
 echo "Running fresh container" | tee --append $LOGFILE
 echo "Ignore any 'No such container' messages"
 $HOST_SERVICE rm --force $CONTAINER_NAME | tee --append $LOGFILE
-$HOST_SERVICE run --interactive --tty --name $CONTAINER_NAME $IMAGE_NAME:build
+$HOST_SERVICE run --interactive --tty \
+  --name $CONTAINER_NAME \
+  $IMAGE_NAME:build
 
 echo ""
 echo "Containers" | tee --append $LOGFILE
