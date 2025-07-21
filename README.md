@@ -106,7 +106,7 @@ on the command line versions.
     You are logged into an Ubuntu 24.04 LTS `bash` command line as
     user `array`, password `processor`, in your home directory
     `/home/array`. You have `sudo` privileges, so you can install
-    packages, etc.. To leave the container, type `exit<enter>`.
+    packages, etc. To leave the container, type `exit<enter>`.
     You will see
 
     ```
