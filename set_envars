@@ -1,5 +1,5 @@
-#export HOST_SERVICE=podman
 export HOST_SERVICE=docker
+#export HOST_SERVICE=podman
 echo "HOST_SERVICE: $HOST_SERVICE"
 
 export IMAGE_NAME=fps-100-resurrection-img

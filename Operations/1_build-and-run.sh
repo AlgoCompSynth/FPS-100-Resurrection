@@ -7,7 +7,7 @@ export LOGFILE=../Logfiles/build-and-run.log
 rm --force $LOGFILE
 
 echo "Quietly building image" | tee --append $LOGFILE
-time $HOST_SERVICE build --tag $IMAGE_NAME:build . \
+/usr/bin/time $HOST_SERVICE build --tag $IMAGE_NAME:build . \
   >> $LOGFILE 2>&1
 
 echo ""
