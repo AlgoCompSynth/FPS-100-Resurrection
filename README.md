@@ -30,12 +30,12 @@ and a 16 GB Raspberry Pi 5 to test on, but no Macintosh of any kind.
 There are desktop editions of both Docker and Podman, but I only test
 on the command line versions.
 
-I recommend Podman hosting rather than Docker, but either will work. See
-[Podman Installation Instructions](https://podman.io/docs/installation)
-for the details. Note that if you're using a Raspberry Pi with the standard
-PiOS based on Debian `bookworm`, you should use the Debian install instructions.
+    I recommend Podman hosting rather than Docker, but either will work. See
+    [Podman Installation Instructions](https://podman.io/docs/installation)
+    for the details. Note that if you're using a Raspberry Pi with the standard
+    PiOS based on Debian `bookworm`, you should use the Debian install instructions.
 
-2. Building the image - first, get to a Linux command line in your container
+3. Building the image - first, get to a Linux command line in your container
    host and clone this repository:
 
     ```
@@ -124,7 +124,7 @@ PiOS based on Debian `bookworm`, you should use the Debian install instructions.
     will be replaced by a new one, erasing any data you stored in the
     first one!
 
-3. What's on the image -
+4. What's on the image -
 
     - Ubuntu 24.04 LTS Linux, with some command line utilities I can't
       live without,
@@ -141,7 +141,7 @@ PiOS based on Debian `bookworm`, you should use the Debian install instructions.
       <https://bitsavers.org/bits/FloatingPointSystems/FPS100/fps100sw.zip> in
       `/usr/local/src/fps100sw`.
 
-4. Export-import operations (new!) -
+5. Export-import operations (new!) -
 
     You can now save your work in a container by _exporting_ it to an image tarball,
     then continue where you left off by _importing_ the tarball to a new image
