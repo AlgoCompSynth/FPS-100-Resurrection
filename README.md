@@ -13,16 +13,10 @@ in Fortran and assembly / microcode. So I'm helping them get the software
 pieces up and running.
 
 To make this usable in a variety of places, I'm implementing it as a
-Dockerfile and `bash` scripts, a way to build a Docker image that can
-be run with Windows, MacOS or Linux on environments ranging from a data
-center down to a decent-sized Raspberry Pi 4 or 5. In theory, you
-should be able to bring this up by installing Docker on your machine,
-cloning this repository, and typing
-
-```
-docker build -t fps-100-resurrection .
-docker run -it fps-100-resurrection
-```
+container image and `bash` scripts. Using a container host like Podman
+or Docker, that image can be built and run on Windows, MacOS or Linux in an
+environment ranging from a data center down to a decent-sized Raspberry
+Pi 4 or 5.
 
 ## Usage
 
@@ -36,24 +30,38 @@ and a 16 GB Raspberry Pi 5 to test on, but no Macintosh of any kind.
 There are desktop editions of both Docker and Podman, but I only test
 on the command line versions.
 
-2. Building the image - first, clone this repository:
+    I recommend Podman hosting rather than Docker, but either will work. See
+    [Podman Installation Instructions](https://podman.io/docs/installation)
+    for the details. Note that if you're using a Raspberry Pi with the standard
+    PiOS based on Debian `bookworm`, you should use the Debian install instructions.
+
+3. Building the image - first, get to a Linux command line in your container
+   host and clone this repository:
 
     ```
     git clone https://github.com/AlgoCompSynth/FPS-100-Resurrection.git
     cd FPS-100-Resurrection
     ```
 
-    You will see two scripts, `docker-build.sh` and `podman-build.sh`.
-    Choose the one that matches your host - for a Docker host, type
+    Next, choose your hosting service. Edit the file `set_envars` and
+    remove the comment designator "#" from the `HOST_SERVICE=` line
+    you want to use, and add one at the beginning of the other one.
+    The default is Podman, so you can skip this step if you're using Podman.
 
     ```
-    ./docker-build.sh
+    export HOST_SERVICE=podman
+    #export HOST_SERVICE=docker
+    echo "HOST_SERVICE: $HOST_SERVICE"
+
+    export IMAGE_NAME=fps-100-resurrection-img
+    export CONTAINER_NAME=fps-100-resurrection
     ```
 
-    and for Podman
+    To build the image and run it in a new container, type
 
     ```
-    ./podman-build.sh
+    cd Operations
+    ./1-build-and-run.sh
     ```
 
     This takes a bit of time; on my large machine - 8 core / 16 thread
@@ -61,44 +69,63 @@ on the command line versions.
     minutes, most of which is a fully parallel compile of all of
     [OpenSIMH](https://opensimh.org/).
 
-    After building the image, the script will `docker run` or `podman run`
-    it. This deletes any existing container and creates a new one named
-    `docker-fps-100` or `podman-fps-100`.
-
-    You will be at an Ubuntu 24.04 LTS Linux `bash` prompt. The whole
-    run will look something like this:
+    On my Raspberry PI 5 it takes about 22 minutes.
 
     ```
-    ❯ ./podman-build.sh 
-    Quietly building fps-100-resurrection Podman image
+    > ./1-build-and-run.sh 
+    HOST_SERVICE: podman
+    Quietly building image fps-100-resurrection-img
+    In case of errors consult logfile ../Logfiles/build-and-run.log
 
-    real	4m53.498s
-    user	18m36.397s
-    sys	1m12.380s
+    real	22m27.438s
+    user	27m8.972s
+    sys 	1m50.223s
 
-    REPOSITORY                      TAG         IMAGE ID      CREATED       SIZE
-    localhost/fps-100-resurrection  latest      7e98fe5487ad  1 second ago  2.12 GB
-    docker.io/library/ubuntu        24.04       65ae7a6f3544  5 days ago    80.6 MB
+    Images:
 
-    Running fresh 'podman-fps-100' container
+    REPOSITORY                          TAG         IMAGE ID      CREATED         SIZE
+    localhost/fps-100-resurrection-img  build       7020037f9735  31 seconds ago  2.16 GB
+    docker.io/library/ubuntu            24.04       b24db5c17bb8  6 days ago      103 MB
+
+    Running fresh container fps-100-resurrection
     Ignore any 'No such container' messages
+
     To run a command as administrator (user "root"), use "sudo <command>".
     See "man sudo_root" for details.
 
-    array@898cf823c6d7:~$
+
+    ~ 
+    ⬢ [podman] >
     ```
 
-    At this point, you are logged into the container as user `array`,
-    password `processor`. You are in the `sudo` group so you can 
-    install packages, etc. To leave the container, type `exit`.
+    The script builds a container image with the fully-qualified name
+    `localhost/fps-100-resurrection-img:build`, then runs it in a
+    container named `fps-100-resurrection`. If that container exists
+    it will be replaced.
+
+    You are logged into an Ubuntu 24.04 LTS `bash` command line as
+    user `array`, password `processor`, in your home directory
+    `/home/array`. You have `sudo` privileges, so you can install
+    packages, etc. To leave the container, type `exit<enter>`.
+    You will see
+
+    ```
+    exit
+
+    Containers:
+
+    CONTAINER ID  IMAGE                                     COMMAND        CREATED         STATUS                             PORTS       NAMES
+    10fcbb176a27  localhost/fps-100-resurrection-img:build  /usr/bin/bash  11 minutes ago  Exited (0) Less than a second ago              fps-100-resurrection
+
+    Finished
+    ```
 
     Once the image is built, running the script again will not rebuild it,
-    so the container will start faster. However, at the moment, you get
-    a fresh container every time. Future versions will have a save and
-    restart script so you can exit the container, save its filesystem,
-    and start it up again where you left off.
+    so the container will start faster. However, any existing container
+    will be replaced by a new one, erasing any data you stored in the
+    first one!
 
-3. What's on the image -
+5. What's on the image -
 
     - Ubuntu 24.04 LTS Linux, with some command line utilities I can't
       live without,
@@ -115,16 +142,65 @@ on the command line versions.
       <https://bitsavers.org/bits/FloatingPointSystems/FPS100/fps100sw.zip> in
       `/usr/local/src/fps100sw`.
 
-4. Next steps - For me, the two immediate next steps are to test on the
-Raspberry Pi 5 and get the save / restart functionality working. Once
-that's done I'm going to release this for contributions.
+6. Export-import operations (new!) -
 
-My end goal here is to build a simulated PDP-11 running RT-11 or RSX-11 M,
-learn how to use the OS, and then get all the FPS software compiled and
-running, ***including the FPS-100 simulator and the math libraries running
-on it.*** I've never used a PDP-11; by the time I got to FPS we were using
-VAX 11/780s running VMS for our daily work. And I've never used `OpenSIMH`
-or its predecessor `simh`.
+    You can now save the work you've done in a container by _exporting_ it to an
+    image tarball, then continue where you left off by _importing_ the tarball
+    to a new image and running that image in a new container.
 
-So I'm especially looking for contributions in that general direction.
-I do have copies of all the relevant manuals.
+    Script `2-export-container.sh` creates the tarball:
+
+    ```
+    > ./2-export-container.sh 
+    HOST_SERVICE: podman
+    Exporting container fps-100-resurrection to image tarball fps-100-resurrection-img.tgz
+
+    real	1m51.774s
+    user	1m48.208s
+    sys 	0m5.463s
+
+    Exports:
+
+    928M	fps-100-resurrection-img.tgz
+
+    Finished
+    ```
+
+    Script `3-import-and-run.sh` imports the image tarball to a new image and runs
+    the image in a new container. The original image that `1-build-and-run.sh` created
+    is left exactly the way it was built, in case you want to start over!
+
+    ```
+    > ./3-import-and-run.sh 
+    HOST_SERVICE: podman
+    Importing image tarball fps-100-resurrection-img.tgz to image fps-100-resurrection-img:latest
+    Getting image source signatures
+    Copying blob a970917f12fd done  
+    Copying config d5841ecd95 done  
+    Writing manifest to image destination
+    Storing signatures
+    sha256:d5841ecd956068f36b98daf62796b855eeda140353c79f3c0d877056df5c2f9e
+
+    Images:
+
+    REPOSITORY                          TAG         IMAGE ID      CREATED         SIZE
+    localhost/fps-100-resurrection-img  latest      d5841ecd9560  7 minutes ago   2.16 GB
+    localhost/fps-100-resurrection-img  build       7020037f9735  29 minutes ago  2.16 GB
+    docker.io/library/ubuntu            24.04       b24db5c17bb8  6 days ago      103 MB
+
+    Running fresh container fps-100-resurrection
+    Ignore any 'No such container' messages
+    fps-100-resurrection
+
+    To run a command as administrator (user "root"), use "sudo <command>".
+    See "man sudo_root" for details.
+
+
+    ~ 
+    ⬢ [podman] >
+    ```
+
+    In the above "images:" list, the tag "build" is the image
+    that the first script built, and the tag "latest" is the
+    image you are running at the prompt, imported from the
+    image tarball that the second script exported.
