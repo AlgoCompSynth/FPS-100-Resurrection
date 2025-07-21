@@ -45,7 +45,7 @@ on the command line versions.
 
     Next, choose your hosting service. Edit the file `set_envars` and
     remove the comment designator "#" from the `HOST_SERVICE=` line
-    you want to use,and add one at the beginning of the other one.
+    you want to use, and add one at the beginning of the other one.
     The default is Podman, so you can skip this step if you're using Podman.
 
     ```
