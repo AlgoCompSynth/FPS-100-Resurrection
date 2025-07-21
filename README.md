@@ -144,9 +144,9 @@ on the command line versions.
 
 6. Export-import operations (new!) -
 
-    You can now save your work in a container by _exporting_ it to an image tarball,
-    then continue where you left off by _importing_ the tarball to a new image
-    and running that image in a new container.
+    You can now save the work you've done in a container by _exporting_ it to an
+    image tarball, then continue where you left off by _importing_ the tarball
+    to a new image and running that image in a new container.
 
     Script `2-export-container.sh` creates the tarball:
 
