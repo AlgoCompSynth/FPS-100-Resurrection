@@ -66,5 +66,6 @@ RUN updatedb > /dev/null 2>&1 \
 
 WORKDIR /home/array
 USER array
+RUN git clone https://github.com/obsolescence/pidp11.git
 
-ENTRYPOINT ["/usr/bin/bash"]
+CMD ["/usr/bin/bash"]
