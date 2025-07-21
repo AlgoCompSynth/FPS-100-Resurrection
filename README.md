@@ -104,9 +104,10 @@ on the command line versions.
     it will be replaced.
 
     You are logged into an Ubuntu 24.04 LTS `bash` command line as
-    user `array`, password `processor`. You have `sudo` privileges
-    so you can install packages, etc.. To leave the container, type
-    `exit<enter>`. You will see
+    user `array`, password `processor`, in your home directory
+    `/home/arrya`. You have `sudo` privileges, so you can install
+    packages, etc.. To leave the container, type `exit<enter>`.
+    You will see
 
     ```
     exit
@@ -124,7 +125,7 @@ on the command line versions.
     will be replaced by a new one, erasing any data you stored in the
     first one!
 
-4. What's on the image -
+5. What's on the image -
 
     - Ubuntu 24.04 LTS Linux, with some command line utilities I can't
       live without,
@@ -141,7 +142,7 @@ on the command line versions.
       <https://bitsavers.org/bits/FloatingPointSystems/FPS100/fps100sw.zip> in
       `/usr/local/src/fps100sw`.
 
-5. Export-import operations (new!) -
+6. Export-import operations (new!) -
 
     You can now save your work in a container by _exporting_ it to an image tarball,
     then continue where you left off by _importing_ the tarball to a new image
