@@ -21,6 +21,7 @@ echo "Enter a password for the 'pi' user"
 sudo passwd pi
 
 echo "Enabling passwordless sudo for the 'pi' user"
-echo "pi ALL=(ALL) NOPASSWD: ALL" | sudo tee --append /etc/sudoers.d/010_pi-nopasswd
+echo "pi ALL=(ALL) NOPASSWD: ALL" \
+  | sudo tee --append /etc/sudoers.d/010_pi-nopasswd
 
 echo "*** Finished Add PiDP User ***"
