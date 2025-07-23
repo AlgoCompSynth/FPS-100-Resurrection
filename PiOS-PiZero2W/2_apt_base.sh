@@ -64,7 +64,6 @@ sudo apt-get install -qq --assume-yes \
 
 ./install_rust.sh
 ./install_distrobox.sh
-./apt_xpra.sh
 ./apt_pkg_db_updates.sh
 ./patch_boot.sh
 ./reconfig_bluetooth.sh
