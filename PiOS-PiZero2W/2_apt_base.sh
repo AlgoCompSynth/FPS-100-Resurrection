@@ -3,7 +3,7 @@
 set -e
 
 echo ""
-echo "** Base Packages **"
+echo "** Packages **"
 
 mkdir --parents $PWD/Logs
 export LOGFILE=$PWD/Logs/base.log
@@ -18,52 +18,10 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update -qq \
   >> $LOGFILE
 echo "Full upgrade"
-sudo apt-get full-upgrade -qq --assume-yes \
-  2>&1 | tee --append $LOGFILE
+sudo apt-get full-upgrade -qq --assume-yes
 echo "Autoremove"
-sudo apt-get autoremove -qq --assume-yes \
-  >> $LOGFILE
-echo "Installing base packages"
-sudo apt-get install -qq --assume-yes \
-  apt-file \
-  bash-completion \
-  build-essential \
-  cmake \
-  curl \
-  dirmngr \
-  file \
-  git \
-  gpg-agent \
-  lsb-release \
-  lynx \
-  man-db \
-  minicom \
-  pipewire-doc \
-  pkg-config \
-  plocate \
-  podman \
-  python3-dev \
-  python3-pip \
-  python3-setuptools \
-  python3-venv \
-  python3-wheel \
-  screen \
-  speedtest-cli \
-  tilix \
-  time \
-  tmux \
-  tree \
-  uidmap \
-  unzip \
-  usbutils \
-  variety \
-  vim \
-  wget \
-  wireplumber-doc \
-  >> $LOGFILE 2>&1
-
-./install_rust.sh
-./install_distrobox.sh
+sudo apt-get autoremove -qq --assume-yes
+./apt_packages.sh
 ./apt_pkg_db_updates.sh
 ./patch_boot.sh
 ./reconfig_bluetooth.sh

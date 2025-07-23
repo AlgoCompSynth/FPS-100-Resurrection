@@ -1,3 +1,0 @@
-deb http://deb.debian.org/debian bookworm-backports main contrib non-free non-free-firmware
-# Uncomment deb-src lines below then 'apt-get update' to enable 'apt-get source'
-#deb-src http://deb.debian.org/debian bookworm-backports main contrib non-free non-free-firmware
