@@ -1,7 +1,7 @@
-1. flash SD card, account 'pi', PiOS with desktop
-2. Run full upgrade via ssh
-3. Terminal setup via ssh
-4. PiDP install via ssh
-5. sudo raspi-config and enable VNC server via ssh
+1. flash SD card, account 'pi', PiOS Lite
+2. apt update, apt install git, clone repo
+3. Run full upgrade via ssh
+4. Terminal setup via ssh
+5. PiDP install via ssh
 6. Reboot
-7. Connect with TigerVNC as 'pi'
+7. Connect with ssh
