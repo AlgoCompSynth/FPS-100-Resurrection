@@ -120,7 +120,7 @@ pidpath=/opt/pidp11
 while true; do
     echo
     #read -p "(Y) to install precompiled binaries, or (C)ompile from source, or (S)kip? " prxn
-    prxn=Y
+    prxn=C
     case $prxn in
         [Yy]* ) 
             # Query the system architecture
