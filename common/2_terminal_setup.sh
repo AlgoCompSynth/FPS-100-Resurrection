@@ -5,10 +5,20 @@ set -e
 echo ""
 echo "* Terminal Setup *"
 
-echo "Creating HOME/Projects, HOME/.local/bin and HOME/bin"
-mkdir --parents $HOME/Projects
-mkdir --parents $HOME/.local/bin
-mkdir --parents $HOME/bin
+echo "Creating \$HOME/Projects, \$HOME/.local/bin and \$HOME/bin"
+mkdir --parents \
+  $HOME/Bookshelf \
+  $HOME/Desktop \
+  $HOME/Documents \
+  $HOME/Downloads \
+  $HOME/Music \
+  $HOME/Pictures \
+  $HOME/Projects \
+  $HOME/Public \
+  $HOME/Templates \
+  $HOME/Videos \
+  $HOME/.local/bin \
+  $HOME/bin
 
 echo "Setting base configuration files"
 cp bashrc $HOME/.bashrc; source bashrc
@@ -20,5 +30,6 @@ echo "Installing Starship"
 
 echo "Adding Starship prompt to bash"
 echo 'eval "$(starship init bash)"' >> $HOME/.bashrc
+echo "Restart bash to get new prompt"
 
 echo "* Finished Terminal Setup *"

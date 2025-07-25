@@ -10,7 +10,7 @@ export LOGFILE=$HOME/Logfiles/install_pidp.log
 rm --force $LOGFILE
 export UNATTENDED_INSTALL="$PWD/unattended_install.sh"
 
-echo "Downloading fresh copy of FPS software to \$HOME"
+echo "Downloading fresh copy of FPS software to \$HOME/fps100sw"
 pushd $HOME > /dev/null
   rm --force --recursive fps100sw*
   wget --quiet \
@@ -32,4 +32,13 @@ pushd /opt
   /usr/bin/time $UNATTENDED_INSTALL >> $LOGFILE 2>&1
 popd
 
+echo "Install complete. Set up remote access and reboot"
+echo ""
+echo "  sudo raspi-config"
+echo "    Advanced Options -> Audio Config: Select PulseAudio"
+echo "    Advanced Options -> Wayland: Select Wayfire"
+echo "    Interface Options -> VNC: Yes"
+echo "    System Options -> Auto Login: No to console, yes to desktop"
+echo "    Finish: Reboot"
+echo ""
 echo "* Finished Install PiDP *"
