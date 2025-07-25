@@ -9,7 +9,7 @@ mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/download_docs.log
 rm --force $LOGFILE
 
-mkdir --parents $HOME/Docs
+mkdir --parents $HOME/Documents
 pushd $HOME/Docs > /dev/null
   echo "PiDP 11 Manual"
   curl --silent --location --remote-name \
