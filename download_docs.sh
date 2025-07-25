@@ -3,14 +3,14 @@
 set -e
 
 echo ""
-echo "* Download Docs *"
+echo "* Download Documents *"
 
 mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/download_docs.log
 rm --force $LOGFILE
 
 mkdir --parents $HOME/Documents
-pushd $HOME/Docs > /dev/null
+pushd $HOME/Documents > /dev/null
   echo "PiDP 11 Manual"
   curl --silent --location --remote-name \
     https://obsolescence.dev/pidp11/PiDP-11_Manual.pdf
@@ -33,4 +33,4 @@ pushd $HOME/Docs > /dev/null
     https://www.dmv.net/dec/pdf/pdp11fortranivlrm.pdf
 popd > /dev/null
 
-echo "* Finished Download Docs *"
+echo "* Finished Download Documents *"
