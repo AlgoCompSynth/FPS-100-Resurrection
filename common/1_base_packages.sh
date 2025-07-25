@@ -35,6 +35,7 @@ sudo apt-get install -qqy \
   speedtest-cli \
   time \
   tree \
+  unzip \
   vim \
   wget \
   >> $LOGFILE
@@ -46,7 +47,7 @@ sudo useradd \
   --comment "System Administrator" \
   --create-home \
   --groups \
-    adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,render,netdev,lpadmin,gpio,i2c,spi \
+    adm,cdrom,sudo,dip,plugdev,users \
   --shell /usr/bin/bash \
   --user-group \
   "$admin_name"
