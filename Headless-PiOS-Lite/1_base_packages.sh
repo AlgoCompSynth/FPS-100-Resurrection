@@ -45,7 +45,8 @@ echo "Adding $admin_name admin user"
 sudo useradd \
   --comment "System Administrator" \
   --create-home \
-  --groups sudo \
+  --groups \
+    adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,render,netdev,lpadmin,gpio,i2c,spi \
   --shell /usr/bin/bash \
   --user-group \
   "$admin_name"
