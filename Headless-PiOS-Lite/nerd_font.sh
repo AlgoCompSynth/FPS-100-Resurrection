@@ -1,0 +1,1 @@
+../common/nerd_font.sh
