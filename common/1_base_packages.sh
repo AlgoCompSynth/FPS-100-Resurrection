@@ -26,6 +26,7 @@ echo "Base packages"
 sudo apt-get install -qqy \
   apt-file \
   bash-completion \
+  build-essential \
   curl \
   file \
   lsb-release \
