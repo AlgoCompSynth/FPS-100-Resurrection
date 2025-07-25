@@ -1,0 +1,1 @@
+../common/2_terminal_setup.sh
