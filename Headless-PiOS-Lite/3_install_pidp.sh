@@ -1,1 +1,0 @@
-../common/3_install_pidp.sh
