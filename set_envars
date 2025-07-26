@@ -1,7 +1,0 @@
-export HOST_SERVICE=podman
-#export HOST_SERVICE=docker
-echo "HOST_SERVICE: $HOST_SERVICE"
-
-export CONTAINER_NAME=fps-100-resurrection
-export IMAGE_NAME=$CONTAINER_NAME-img
-export TARBALL_NAME=$IMAGE_NAME.tgz

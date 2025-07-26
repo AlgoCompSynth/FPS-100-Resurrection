@@ -100,6 +100,9 @@ cd FPS-100-Resurrection
 ./download_documents.sh
 ```
 
+When this script finishes, a collection of documents will be in
+`$HOME/Documents/PiDP 11`.
+
 ## Script conventions
 
 Most of the scripts in this collection generate many lines of output
@@ -113,6 +116,29 @@ All scripts are set to crash on the first error. If a script
 does not print a "Finished" message, it has crashed and you
 can open an issue at
 <https://github.com/AlgoCompSynth/FPS-100-Resurrection/issues/new>.
+
+## Base packages
+
+The rest of the installation takes place in the `Desktop-PiOS` directory;
+`cd Desktop-PiOS`.
+
+```
+./1_base_packages.sh
+```
+
+will do a full upgrade, install some command line conveniences,
+and create an administrator account with `sudo` privileges.
+
+Although the PiDP 11 installer installs all the packages it depends
+on, I've found that a number of other packages are useful in working
+at the Linux command line. The script `1_base_packages.sh` installs
+them, then creates an administrator account to use when you don't
+want to do administration from the main `pi` account. It will ask
+you for the name of the account.
+
+This script does a full upgrade, and may require your intervention.
+If it stops for a decision, the default will work. The rest of the
+scripts do not require manual intervention.
 
 2. Run full upgrade via ssh
 3. Terminal setup via ssh

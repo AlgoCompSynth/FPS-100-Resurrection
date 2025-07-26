@@ -1,1 +1,3 @@
-../common/vimrc-light
+set bg=light
+filetype plugin on
+syntax on

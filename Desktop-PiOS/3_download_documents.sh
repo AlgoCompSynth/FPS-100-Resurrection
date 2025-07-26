@@ -9,8 +9,8 @@ mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/download_documents.log
 rm --force $LOGFILE
 
-mkdir --parents $HOME/Documents
-pushd $HOME/Documents > /dev/null
+mkdir --parents "$HOME/Documents/PiDP 11"
+pushd "$HOME/Documents/PiDP 11" > /dev/null
   echo "PiDP 11 Manual" | tee --append $LOGFILE
   curl --silent --location --remote-name \
     https://obsolescence.dev/pidp11/PiDP-11_Manual.pdf

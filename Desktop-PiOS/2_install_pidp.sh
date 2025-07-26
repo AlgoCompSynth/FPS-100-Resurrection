@@ -6,7 +6,7 @@ echo ""
 echo "* Install PiDP *"
 
 mkdir --parents $HOME/Logfiles
-export LOGFILE=$HOME/Logfiles/install_pidp.log
+export LOGFILE=$HOME/Logfiles/2_install_pidp.log
 rm --force $LOGFILE
 export UNATTENDED_INSTALL="$PWD/unattended_install.sh"
 
