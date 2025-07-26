@@ -89,6 +89,30 @@ pi@xenakis:~ $
 On Windows 11, this will not work from a Windows Subsystem for Linux
 terminal. You need to run this from a ***PowerShell*** window.
 
+## Cloning this repository
+
+Type `git clone https://github.com/AlgoCompSynth/FPS-100-Resurrection.git`.
+This will download this collection of scripts. Then, download all the
+documents for later:
+
+```
+cd FPS-100-Resurrection
+./download_documents.sh
+```
+
+## Script conventions
+
+Most of the scripts in this collection generate many lines of output
+useful for troubleshooting but annoying to watch. So most scripts
+redirect this output to a logfile. This file can be found in
+`~/Logfiles/<script-name>.log`, where `<script-name>` is the part
+of the script filename before the `.sh`. So the logfile for
+`download_documents.sh` is in `~/Logfiles/download_documents.sh`.
+
+All scripts are set to crash on the first error. If a script
+does not print a "Finished" message, it has crashed and you
+can open an issue at
+<https://github.com/AlgoCompSynth/FPS-100-Resurrection/issues/new>.
 
 2. Run full upgrade via ssh
 3. Terminal setup via ssh
