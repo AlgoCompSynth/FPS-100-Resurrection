@@ -1,5 +1,21 @@
 # Setup Instructions
 
+## First, download and read the manual
+
+The operations here are derived from the 
+[PiDP 11 manual](https://obsolescence.dev/pidp11/PiDP-11_Manual.pdf).
+I've derived the scripts here from that manual, using the latest
+PiDP 11 distribution on GitHub:
+<https://github.com/obsolescence/pidp11/blob/main/README.md>.
+
+If you have any problems, please open an issue at
+<https://github.com/AlgoCompSynth/FPS-100-Resurrection/issues/new>.
+
+This should work on any Raspberry Pi with at least 2 GB of RAM. I
+have a stripped-down version running on a 512 MB Raspberry Pi
+Zero 2 W, but my frustration tolerance is probably much higher than
+yours. ;-)
+
 ## microSD card
 
 In theory this will work with a 16 GB card, but the stores around
