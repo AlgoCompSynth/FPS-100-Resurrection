@@ -41,6 +41,55 @@ Use the [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
 button, and then press the "Yes" button on the "Warning" dialog box to flash
 and verify the microSD card.
 
+## Connecting with secure shell (SSH)
+
+To install the software, you will need to connect to the Raspberry Pi
+from another machine and run three scripts from the command line.
+
+From Linux, open a terminal window and type `ssh pi@<hostname>.local`,
+where "<hostname> is the hostname you set when you flashed the microSD
+card. For example, my Raspberry Pi 5 has the hostname "xenakis", so I
+type `ssh pi@xenakis.local`.
+
+The first time you do this, you will see this:
+
+```
+❯ ssh pi@xenakis.local
+The authenticity of host 'xenakis.local (192.168.1.32)' can't be established.
+ED25519 key fingerprint is SHA256:GoY1tFrV4PjDdc8RMYatzDUV0f4Oe1jLs2bfbiJfJjQ.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+Answer "yes". Then you will see
+
+```
+Warning: Permanently added 'xenakis.local' (ED25519) to the list of known hosts.
+pi@xenakis.local's password:
+```
+
+Enter the password for "pi" you set when you flashed the microSD card.
+As they say in the movies, "You're in!"
+
+```
+❯ ssh pi@xenakis.local 
+pi@xenakis.local's password: 
+Linux xenakis 6.12.25+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.25-1+rpt1 (2025-04-30) aarch64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Mon May 12 17:17:58 2025
+pi@xenakis:~ $
+```
+
+On Windows 11, this will not work from a Windows Subsystem for Linux
+terminal. You need to run this from a ***PowerShell*** window.
+
+
 2. Run full upgrade via ssh
 3. Terminal setup via ssh
 4. PiDP install via ssh
