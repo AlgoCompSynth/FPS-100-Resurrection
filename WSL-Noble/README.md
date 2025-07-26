@@ -1,4 +1,7 @@
-
+https://www.makeuseof.com/tag/linux-desktop-windows-subsystem/
+https://gist.github.com/tdcosta100/e28636c216515ca88d1f2e7a2e188912
+https://askubuntu.com/questions/1252007/opening-ubuntu-20-04-desktop-on-wsl2
+https://ivonblog.com/en-us/posts/run-linux-desktop-on-wsl/
 https://techblog.fullspeedtechnologies.com/2024/06/16/Setting-Up-A-Graphical-Desktop-Environment-in-WSL2.html
 https://github.com/marchaesen/vcxsrv/releases
 
