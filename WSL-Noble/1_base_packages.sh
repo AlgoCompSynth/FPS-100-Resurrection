@@ -6,7 +6,7 @@ echo ""
 echo "* Base Packages *"
 
 mkdir --parents $HOME/Logfiles
-export LOGFILE=$HOME/Logfiles/base_packages.log
+export LOGFILE=$HOME/Logfiles/1_base_packages.log
 rm --force $LOGFILE
 
 sudo cp locale.gen /etc/locale.gen
@@ -30,11 +30,9 @@ sudo apt-get install -qqy \
   curl \
   file \
   lsb-release \
-  lubuntu-desktop \
   lynx \
   man-db \
   pipewire-doc \
-  pipewire-module-xrdp \
   plocate \
   speedtest-cli \
   time \
@@ -43,27 +41,24 @@ sudo apt-get install -qqy \
   vim \
   wget \
   wireplumber-doc \
-  xrdp \
   >> $LOGFILE
 
 echo "Setting base configuration files"
 cp bash_aliases $HOME/.bash_aliases; source bash_aliases
 cp vimrc $HOME/.vimrc
 
-echo "Enter username for new administrator account with 'sudo' privileges"
-read -p "Username cannot be 'pi': " admin_name
-echo "Adding $admin_name admin user"
+echo "Creating 'pi' account with password 'pi' and passwordless 'sudo' privileges"
 sudo useradd \
-  --comment "System Administrator" \
+  --comment "pi account" \
   --create-home \
   --groups \
     adm,cdrom,sudo,dip,plugdev,users \
   --shell /bin/bash \
   --skel /etc/skel \
   --user-group \
-  "$admin_name"
+  pi
 
-echo "Enter a password for the $admin_name user"
-sudo passwd "$admin_name"
+echo "pi:pi" | sudo chpasswd
+echo "pi   ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee --append /etc/sudoers.d/pi_nopasswd
 
 echo "* Finished Base Packages *"

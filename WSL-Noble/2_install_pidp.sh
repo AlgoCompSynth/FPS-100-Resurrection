@@ -8,7 +8,7 @@ echo "* Install PiDP *"
 mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/2_install_pidp.log
 rm --force $LOGFILE
-export UNATTENDED_INSTALL="$PWD/unattended_install.sh"
+export UNATTENDED_INSTALL_SCRIPT="$PWD/unattended_install.sh"
 
 echo "Downloading fresh copy of FPS software to \$HOME/fps100sw"
 pushd $HOME > /dev/null
@@ -29,14 +29,10 @@ pushd /opt
   echo "Cloning pidp11"
   sudo git clone https://github.com/obsolescence/pidp11.git
   echo "Starting unattended install"
-  /usr/bin/time $UNATTENDED_INSTALL >> $LOGFILE 2>&1
+  sudo cp $UNATTENDED_INSTALL_SCRIPT /opt/
+  /usr/bin/time su -c "/opt/unattended_install.sh > /tmp/unattended_install.log 2>&1" pi
+  echo "Collecting unattended install logfile"
+  cat /tmp/unattended_install.log >> $LOGFILE
 popd
 
-echo "Install complete. Set up remote access and reboot"
-echo ""
-echo "  sudo raspi-config"
-echo "    Advanced Options -> Audio Config: Select PulseAudio"
-echo "    Interface Options -> VNC: Yes"
-echo "    Finish: Reboot"
-echo ""
 echo "* Finished Install PiDP *"
