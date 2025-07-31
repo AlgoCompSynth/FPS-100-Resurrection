@@ -6,11 +6,11 @@ echo ""
 echo "* Download Documents *"
 
 mkdir --parents $HOME/Logfiles
-export LOGFILE=$HOME/Logfiles/download_documents.log
+export LOGFILE=$HOME/Logfiles/2_download_documents.log
 rm --force $LOGFILE
 
-mkdir --parents "$HOME/Documents/PiDP 11"
-pushd "$HOME/Documents/PiDP 11" > /dev/null
+mkdir --parents "$HOME/Documents/PiDP_11"
+pushd "$HOME/Documents/PiDP_11" > /dev/null
   echo "PiDP 11 Manual" | tee --append $LOGFILE
   curl --silent --location --remote-name \
     https://obsolescence.dev/pidp11/PiDP-11_Manual.pdf
@@ -31,6 +31,18 @@ pushd "$HOME/Documents/PiDP 11" > /dev/null
   echo "PDP-11 Fortran IV Language Reference Manual" | tee --append $LOGFILE
   curl --silent --location --remote-name \
     https://www.dmv.net/dec/pdf/pdp11fortranivlrm.pdf
+popd > /dev/null
+
+echo "Downloading fresh copy of FPS software to \$HOME/fps100sw"
+pushd $HOME > /dev/null
+  rm --force --recursive fps100sw*
+  wget --quiet \
+    https://bitsavers.org/bits/FloatingPointSystems/FPS100/fps100sw.zip
+  unzip fps100sw.zip \
+    >> $LOGFILE
+  rm --force fps100sw.zip
+  chmod o+rx fps100sw
+  chmod go+r fps100sw/*
 popd > /dev/null
 
 echo "* Finished Download Documents *"

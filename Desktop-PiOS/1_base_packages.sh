@@ -6,7 +6,7 @@ echo ""
 echo "* Base Packages *"
 
 mkdir --parents $HOME/Logfiles
-export LOGFILE=$HOME/Logfiles/base_packages.log
+export LOGFILE=$HOME/Logfiles/1_base_packages.log
 rm --force $LOGFILE
 
 sudo cp locale.gen /etc/locale.gen
@@ -17,7 +17,8 @@ echo "Update"
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update -qq \
   >> $LOGFILE
-echo "Full upgrade"
+echo "Starting full upgrade"
+echo "Choose the default for any configuration file updates"
 sudo apt-get full-upgrade -qqy
 echo "Autoremove"
 sudo apt-get autoremove -qqy \
