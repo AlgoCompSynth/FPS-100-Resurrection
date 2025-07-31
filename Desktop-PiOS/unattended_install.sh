@@ -208,7 +208,7 @@ while true; do
                 echo
                 echo "Autostart the PDP-11 using the GUI(Y) or .profile (H)?"
                     #read -p "-- Y recommended, H is for headless Pis without GUI:" yhn
-                    yhn=H
+                    yhn=Y
                 case $yhn in
                       [Yy]* ) 
                         mkdir -p ~/.config/autostart
@@ -276,7 +276,7 @@ done
 while true; do
     echo
     #read -p "Add VT-52 desktop icon and desktop settings? " prxn
-    prxn=N
+    prxn=Y
     case $prxn in
         [Yy]* ) 
             cp /opt/pidp11/install/vt52.desktop /home/pi/Desktop/
