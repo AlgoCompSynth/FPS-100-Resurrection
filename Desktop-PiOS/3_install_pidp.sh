@@ -8,7 +8,6 @@ echo "* Install PiDP *"
 mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/3_install_pidp.log
 rm --force $LOGFILE
-#export UNATTENDED_INSTALL="$PWD/unattended_install.sh"
 
 pushd /opt
   echo ""
@@ -16,7 +15,7 @@ pushd /opt
   sudo rm --force --recursive pidp11
   echo "Cloning pidp11"
   sudo git clone https://github.com/obsolescence/pidp11.git \
-    >> $LOGFILE
+    >> $LOGFILE 2>&1
 popd
 
 echo "Patching install script for unattended operation"
@@ -24,7 +23,8 @@ sudo patch --backup /opt/pidp11/install/install.sh < unattended_install.patch
 
 pushd /opt
   echo "Starting unattended install"
-  /usr/bin/time /opt/pidp11/install/install.sh
+  /usr/bin/time /opt/pidp11/install/install.sh \
+    >> $LOGFILE 2>&1
 popd
 
 echo ""
