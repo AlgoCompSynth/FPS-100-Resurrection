@@ -45,20 +45,4 @@ echo "Setting base configuration files"
 cp bash_aliases $HOME/.bash_aliases; source bash_aliases
 cp vimrc $HOME/.vimrc
 
-echo "Enter username for new administrator account with 'sudo' privileges"
-read -p "Username cannot be 'pi': " admin_name
-echo "Adding $admin_name admin user"
-sudo useradd \
-  --comment "System Administrator" \
-  --create-home \
-  --groups \
-    adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,render,netdev,lpadmin,gpio,i2c,spi \
-  --shell /bin/bash \
-  --skel /etc/skel \
-  --user-group \
-  "$admin_name"
-
-echo "Enter a password for the $admin_name user"
-sudo passwd "$admin_name"
-
 echo "* Finished Base Packages *"
