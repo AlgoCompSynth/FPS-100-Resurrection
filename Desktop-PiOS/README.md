@@ -49,7 +49,7 @@ type `ssh pi@partch.local`.
 The first time you do this, you will see this:
 
 ```
-❯ ssh pi@partch.local
+$ ssh pi@partch.local
 The authenticity of host 'partch.local (192.168.1.32)' can't be established.
 ED25519 key fingerprint is SHA256:GoY1tFrV4PjDdc8RMYatzDUV0f4Oe1jLs2bfbiJfJjQ.
 This key is not known by any other names.
@@ -67,7 +67,7 @@ Enter the password for "pi" you set when you flashed the microSD card.
 As they say in the movies, "You're in!"
 
 ```
-❯ ssh pi@partch.local 
+$ ssh pi@partch.local 
 pi@partch.local's password: 
 Linux partch 6.12.25+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.25-1+rpt1 (2025-04-30) aarch64
 
@@ -108,12 +108,16 @@ The rest of the installation takes place in the directory
 
 ## Document downloads
 
-The first script, `1_download_documents.sh`, downloads some documents
-and the FPS-100 software. The documents include the PiDP 11 Manual,
-a manual for the pdp11/70 that PiDP 11 simulates, and a number of DEC
-manuals. The manuals are in `~/Documents/PiDP_11` and the FPS-100
-software is in `~/fps100sw`. A future release will also have FPS-100
-manuals if they exist online.
+```
+./1_download_documents.sh
+```
+
+downloads some documents and the FPS-100 software. The documents
+include the PiDP 11 Manual, a manual for the pdp11/70 that PiDP
+11 simulates, and a number of DEC manuals. The manuals are in
+`~/Documents/PiDP_11` and the FPS-100 software is in
+`~/fps100sw`. A future release will also have FPS-100 manuals
+if they exist online.
 
 ## Base packages
 
@@ -130,18 +134,6 @@ intervention, so its output is not logged. That might go away in future
 Raspberry Pi updates, but as of 2025-08-02, it will stop and ask you
 how you want to deal with an updated configuration file. The default
 will work, so just press `Enter` if this happens.
-and create an administrator account with `sudo` privileges.
-
-Although the PiDP 11 installer installs all the packages it depends
-on, I've found that a number of other packages are useful in working
-at the Linux command line. The script `1_base_packages.sh` installs
-them, then creates an administrator account to use when you don't
-want to do administration from the main `pi` account. It will ask
-you for the name of the account.
-
-This script does a full upgrade, and may require your intervention.
-If it stops for a decision, the default will work. The rest of the
-scripts do not require manual intervention.
 
 ```
 Configuration file '/etc/initramfs-tools/initramfs.conf'
@@ -158,22 +150,40 @@ Configuration file '/etc/initramfs-tools/initramfs.conf'
 
 ## Installing the PiDP 11 software
 
-Script `3_install_pidp.sh` installs the PiDP 11 software.
-See
+```
+./3_install_pidp.sh
+```
+
+installs the PiDP 11 software; see
 <https://github.com/AlgoCompSynth/pidp11?tab=readme-ov-file#install-instructions>.
 Note that this script uses a fork of
-<https://github.com/obsolescence/pidp11> so if the owners of
+<https://github.com/obsolescence/pidp11>, so if the owners of
 that repo change it, this script will still work.
 
 The install script that ships with PiDP 11 asks a number
 of questions, but advises you to "just say yes." So
 `3_install_pidp.sh` patches the install script for an
-unattended install and runs that instead! After the
-unattended install finishes, `3_install_pidp.sh` restores
-the original installer in case you want to change something.
+unattended install and runs that instead!
+
+On my 16 GB Raspberry Pi 5, this takes about 2.5 minutes.
+After the unattended install finishes, `3_install_pidp.sh`
+restores the original installer in case you want to
+change something.
+
+## Setup for remote access
+
+The system is already set up for command line access:
+`ssh pi@<hostname>.local`. But you can also access the `pi`
+account desktop using Virtual Network Computing (VNC). The
+directions are here:
+
+<https://www.raspberrypi.com/documentation/computers/remote-access.html#vnc>.
+
+As the install script notes, the easiest way to do this is
+with `sudo raspi-config` after the install completes.
 
 ```
-❯ ./3_install_pidp.sh 
+$ ./3_install_pidp.sh 
 
 * Install PiDP *
 /opt ~/Projects/FPS-100-Resurrection/Desktop-PiOS
@@ -190,25 +200,16 @@ Restoring original install script
 
 
 
-Install complete. Set up remote access and reboot
+Install complete. Set up remote access and reboot:
 
-  sudo raspi-config
-    Interface Options -> VNC: Yes
-    Finish -> Reboot now? Yes
+$ sudo raspi-config
+    Interface Options -> VNC
+      Would you like the VNC Server to be enabled?
+        Enter <Yes>
+      The VNC Server is enabled
+        Enter <Ok>
+    Enter <Finish>
+$ sudo reboot
 
 * Finished Install PiDP *
 ```
-
-On my 16 GB Raspberry Pi 5, this takes about 2.5 minutes.
-
-## Setup for remote access
-
-The system is already set up for command line access:
-`ssh pi@<hostname>.local`. But you can also access the `pi`
-account desktop using Virtual Network Computing (VNC). The
-directions are here:
-
-<https://www.raspberrypi.com/documentation/computers/remote-access.html#vnc>.
-
-As the install script notes, the easiest way to do this is
-with `sudo raspi-config` after the install completes.
