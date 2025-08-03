@@ -17,6 +17,27 @@ RAM.
 
 ## microSD card
 
+First question: how big does the microSD card have to be? On my
+latest install, after completion, about 14 gigabytes were in use
+on the card. 
+
+```
+❯ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            7.9G     0  7.9G   0% /dev
+tmpfs           1.6G   16M  1.6G   1% /run
+/dev/mmcblk0p2  469G   12G  434G   3% /
+tmpfs           8.0G  336K  8.0G   1% /dev/shm
+tmpfs           5.0M   48K  5.0M   1% /run/lock
+/dev/mmcblk0p1  510M   69M  442M  14% /boot/firmware
+tmpfs           1.6G  208K  1.6G   1% /run/user/1000
+```
+
+So in theory, a 16 GB card will be enough. However, the smallest
+cards I've seen recently in the local stores are 64 GB, and
+high-speed 128 GB cards are common. I'd recommend a fast 64 GB
+card.
+
 Use the [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
 
 1. Set the Operating System to "Raspberry Pi OS (64-bit).
