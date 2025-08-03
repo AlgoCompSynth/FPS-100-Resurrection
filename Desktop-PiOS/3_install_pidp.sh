@@ -14,17 +14,24 @@ pushd /opt
   echo "Removing old pidp11!"
   sudo rm --force --recursive pidp11
   echo "Cloning pidp11"
-  sudo git clone https://github.com/obsolescence/pidp11.git \
+  sudo git clone https://github.com/AlgoCompSynth/pidp11.git \
     >> $LOGFILE 2>&1
 popd
 
 echo "Patching install script for unattended operation"
-sudo patch --backup /opt/pidp11/install/install.sh < unattended_install.patch
+sudo patch --backup \
+  --input=unattended_install.patch \
+  /opt/pidp11/install/install.sh
 
 pushd /opt
   echo "Starting unattended install"
   /usr/bin/time /opt/pidp11/install/install.sh \
     >> $LOGFILE 2>&1
+
+  echo "Restoring original install script"
+  sudo mv /opt/pidp11/install/install.sh.orig \
+          /opt/pidp11/install/install.sh
+   
 popd
 
 echo ""
@@ -33,7 +40,6 @@ echo ""
 echo "Install complete. Set up remote access and reboot"
 echo ""
 echo "  sudo raspi-config"
-echo "    Advanced Options -> Audio Config: Select PulseAudio"
 echo "    Interface Options -> VNC: Yes"
 echo "    Finish -> Reboot now? Yes"
 echo ""

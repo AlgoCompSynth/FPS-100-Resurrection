@@ -6,7 +6,7 @@ echo ""
 echo "* Base Packages *"
 
 mkdir --parents $HOME/Logfiles
-export LOGFILE=$HOME/Logfiles/1_base_packages.log
+export LOGFILE=$HOME/Logfiles/2_base_packages.log
 rm --force $LOGFILE
 
 sudo cp locale.gen /etc/locale.gen
@@ -41,9 +41,5 @@ sudo apt-get install -qqy \
   vim \
   wget \
   >> $LOGFILE
-
-echo "Setting base configuration files"
-cp bash_aliases $HOME/.bash_aliases; source bash_aliases
-cp vimrc $HOME/.vimrc
 
 echo "* Finished Base Packages *"

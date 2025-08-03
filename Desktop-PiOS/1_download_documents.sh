@@ -6,7 +6,7 @@ echo ""
 echo "* Download Documents *"
 
 mkdir --parents $HOME/Logfiles
-export LOGFILE=$HOME/Logfiles/2_download_documents.log
+export LOGFILE=$HOME/Logfiles/1_download_documents.log
 rm --force $LOGFILE
 
 mkdir --parents "$HOME/Documents/PiDP_11"

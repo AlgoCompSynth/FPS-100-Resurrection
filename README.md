@@ -12,12 +12,6 @@ I worked at FPS from 1980-1990 and as part of my job, programmed FPS machines
 in Fortran and assembly / microcode. So I'm helping them get the software
 pieces up and running.
 
-To make this usable in a variety of places, I'm implementing it as a
-container image and `bash` scripts. Using a container host like Podman
-or Docker, that image can be built and run on Windows, MacOS or Linux in an
-environment ranging from a data center down to a decent-sized Raspberry
-Pi 4 or 5.
-
 ## Usage
 
 The only tested version of this project currently runs on a Raspberry Pi
