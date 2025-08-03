@@ -18,7 +18,7 @@ RAM.
 ## microSD card
 
 First question: how big does the microSD card have to be? On my
-latest install, after completion, about 14 gigabytes were in use
+latest install, after completion, about 13 gigabytes were in use
 on the card. 
 
 ```
@@ -63,7 +63,7 @@ To install the software, you will need to connect to the Raspberry Pi
 from another machine and run three scripts from the command line.
 
 From Linux, open a terminal window and type `ssh pi@<hostname>.local`,
-where "<hostname> is the hostname you set when you flashed the microSD
+where "<hostname>" is the hostname you set when you flashed the microSD
 card. For example, my Raspberry Pi 5 has the hostname "partch", so I
 type `ssh pi@partch.local`.
 
@@ -124,7 +124,7 @@ does not print a "Finished" message, it has crashed and you
 should open an issue at
 <https://github.com/AlgoCompSynth/FPS-100-Resurrection/issues/new>.
 
-The rest of the installation takes place in the directory
+The installation takes place in the directory
 `FPS-100-Resurrection/Desktop-PiOS`, so `cd` into that directory. 
 
 ## Document downloads
@@ -134,11 +134,24 @@ The rest of the installation takes place in the directory
 ```
 
 downloads some documents and the FPS-100 software. The documents
-include the PiDP 11 Manual, a manual for the pdp11/70 that PiDP
-11 simulates, and a number of DEC manuals. The manuals are in
-`~/Documents/PiDP_11` and the FPS-100 software is in
-`~/fps100sw`. A future release will also have FPS-100 manuals
-if they exist online.
+include 
+    - the PiDP 11 Manual, 
+    - a collection of DEC pdp11 manuals,
+    - a collection of FPS-100 manuals, and
+    - a collection of AP-120B manuals.
+
+```
+$ ./1_download_documents.sh 
+
+* Download Documents *
+PiDP 11 Manual: $HOME/Documents/PiDP_11
+DEC Manuals: $HOME/Documents/DEC
+FPS-100 Manuals: $HOME/Documents/FPS-100
+AP-120B Manuals: $HOME/Documents/AP-120B
+
+Downloading fresh copy of FPS software to $HOME/fps100sw
+* Finished Download Documents *
+```
 
 ## Base packages
 
@@ -191,17 +204,6 @@ After the unattended install finishes, `3_install_pidp.sh`
 restores the original installer in case you want to
 change something.
 
-## Setup for remote access
-
-The system is already set up for command line access:
-`ssh pi@<hostname>.local`. But you can also access the `pi`
-account desktop using Virtual Network Computing (VNC). The
-directions are here:
-
-<https://www.raspberrypi.com/documentation/computers/remote-access.html#vnc>.
-
-As the install script notes, the easiest way to do this is
-with `sudo raspi-config` after the install completes.
 
 ```
 $ ./3_install_pidp.sh 
@@ -234,3 +236,17 @@ $ sudo reboot
 
 * Finished Install PiDP *
 ```
+
+## Setup for remote access
+
+The system is already set up for command line access:
+`ssh pi@<hostname>.local`. But you can also access the `pi`
+account desktop using Virtual Network Computing (VNC). The
+directions are here:
+
+<https://www.raspberrypi.com/documentation/computers/remote-access.html#vnc>.
+
+As the install script notes, the easiest way to do this is
+with `sudo raspi-config` after the install completes.
+
+## [Harry Partch - Wikipedia](https://en.wikipedia.org/wiki/Harry_Partch)
