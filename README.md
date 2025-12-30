@@ -18,5 +18,15 @@ The only tested version of this project currently runs on a Raspberry Pi
 PiOS 64-bit system with at least 2 GB of RAM. ***After cloning this repo,
 `cd Desktop-PiOS` and follow the directions in `README.md`.***
 
-A version for Windows Subsystem for Linux and a Docker container version
-are on the road map. Watch this space!
+## Update 2025-12-30
+
+There has been an uptick in the project activity over the holidays and
+I'm spending some time on this again. Since the last commit I've acquired
+an 8 GB Pi 4 and the Raspberry Pi OS is now based on Debian `trixie`
+rather than `bookworm`. I'm pleased to say that the install worked on
+the Pi 4 with `trixie`, so I'm going to release this as v1.0.0 and
+open the issues up.
+
+I'm particularly interested at the moment in any relevant documentation
+that isn't currently being downloaded. Please open issues for such
+documents and I'll add them to the download script.
