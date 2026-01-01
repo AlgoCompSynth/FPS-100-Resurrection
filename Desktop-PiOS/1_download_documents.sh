@@ -2,6 +2,20 @@
 
 set -e
 
+# first parameter is URL, second is levels, third is LOGFILE
+function recursive_wget () {
+  wget \
+    --recursive \
+    --no-parent \
+    --accept pdf,zip,jpg,jpeg,tif,tap,txt \
+    --level=$2 \
+    --convert-links \
+    --backup-converted \
+    --adjust-extension \
+    --append-output=$3 \
+    $1
+}
+
 echo ""
 echo "* Download Documents *"
 
@@ -14,6 +28,28 @@ pushd "$HOME/Documents/PiDP_11" > /dev/null
   echo "PiDP 11 Manual: \$HOME/Documents/PiDP_11" | tee --append $LOGFILE
   curl --silent --location --remote-name \
     https://obsolescence.dev/pidp11/PiDP-11_Manual.pdf
+popd > /dev/null
+
+pushd "$HOME/Documents" > /dev/null
+  echo "Bitsavers FPS software" | tee --append $LOGFILE
+  recursive_wget https://bitsavers.org/bits/FloatingPointSystems/FPS100 1 $LOGFILE
+  echo "Bitsavers FPS documents" | tee --append $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems 1 $LOGFILE
+  echo "..Bitsavers FPS AP-120B" | tee --append $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/AP-120B 1 $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/AP-120B/AP-120B_Schematics/ 1 $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/AP-120B/GE_AP-CT/ 1 $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/brochures/ 1 $LOGFILE
+  echo "..Bitsavers FPS FPS-100/3000/5000" | tee --append $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-100/ 1 $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-100/FPS-100_Schematics/ 2 $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-100/pictures/ 2 $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-3000/ 1 $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-5000/ 1 $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/GE_RDCP_Processor/ 1 $LOGFILE
+  echo "..Bitsavers FPS miscellaneous" | tee --append $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-164/ 1 $LOGFILE
+  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/T_Series/ 1 $LOGFILE
 popd > /dev/null
 
 mkdir --parents "$HOME/Documents/DEC"
@@ -33,63 +69,6 @@ pushd "$HOME/Documents/DEC" > /dev/null
     https://bitsavers.org/pdf/dec/pdp11/rsx11m_s/RSX11M_V4.1_Apr83/4_ProgramDevelopment/AA-L676A-TC_gdPgmDevel_198111.pdf
   curl --silent --location --remote-name \
     https://www.dmv.net/dec/pdf/pdp11fortranivlrm.pdf
-popd > /dev/null
-
-mkdir --parents "$HOME/Documents/FPS-100"
-pushd "$HOME/Documents/FPS-100" > /dev/null
-  echo "FPS-100 Manuals: \$HOME/Documents/FPS-100" | tee --append $LOGFILE
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/FPS-100/800-7428-001_FPS-100_Assembler_ASM100_Reference_Manual_197909.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/FPS-100/860-7404-000_FPS100_2.5kROM.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/FPS-100/FPS100_LibraryEditor.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/FPS-100/FPS100_Loader.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/FPS-100/FPS100_Specifications.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/FPS-100/FPS100_SupervisorRefMan.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/FPS-100/FPS100_VectorFuncChainer.pdf  
-popd > /dev/null
-
-mkdir --parents "$HOME/Documents/AP-120B"
-pushd "$HOME/Documents/AP-120B" > /dev/null
-  echo "AP-120B Manuals: \$HOME/Documents/AP-120B" | tee --append $LOGFILE
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/AP-120B/7259-02_AP-120B_procHbk.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/AP-120B/860-7288-004_AP_mathLibr.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/AP-120B/860-7292-002_AP-120B_Program_Development_Software_Manual_Sep78.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/AP-120B/860-7319-000_AP-120B_Programmers_Reference_Manual_Part_2_Jan78.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/AP-120B/fast_mem_ucode.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/AP-120B/FPS-7284-01_AP-120B_Diagnostic_Manual_197601.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/AP-120B/FPS-7319_Programmers_Reference_Manual_Part_1_197801.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/AP-120B/FPS-7319_Programmers_Reference_Manual_Part_2_197801.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/AP-120B/FPS-7352_AP-120B_Math_Library_Routines_197706.pdf
-  curl --silent --location --remote-name \
-    https://bitsavers.org/pdf/floatingPointSystems/AP-120B/FPS-7364-01_APDBUG_Manual_197802.pdf
-popd > /dev/null
-
-echo ""
-echo "Downloading fresh copy of FPS software to \$HOME/fps100sw"
-pushd $HOME > /dev/null
-  rm --force --recursive fps100sw*
-  wget --quiet \
-    https://bitsavers.org/bits/FloatingPointSystems/FPS100/fps100sw.zip
-  unzip fps100sw.zip \
-    >> $LOGFILE
-  rm --force fps100sw.zip
-  chmod o+rx fps100sw
-  chmod go+r fps100sw/*
 popd > /dev/null
 
 echo "* Finished Download Documents *"
