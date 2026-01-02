@@ -33,6 +33,14 @@ popd > /dev/null
 pushd "$HOME/Documents" > /dev/null
   echo "Bitsavers FPS software" | tee --append $LOGFILE
   recursive_wget https://bitsavers.org/bits/FloatingPointSystems/FPS100 1 $LOGFILE
+  pushd $HOME/Documents/bitsavers.org/bits/FloatingPointSystems/FPS100/ > /dev/null
+    unzip -qqo fps100sw.zip
+    wget \
+      --no-clobber \
+      --append-output=$LOGFILE \
+      https://bitsavers.org/bits/FloatingPointSystems/FPS100/fps100flxDamaged.tap
+  popd > /dev/null
+
   echo "Bitsavers FPS documents" | tee --append $LOGFILE
   recursive_wget https://bitsavers.org/pdf/floatingPointSystems 1 $LOGFILE
   echo "..Bitsavers FPS AP-120B" | tee --append $LOGFILE
