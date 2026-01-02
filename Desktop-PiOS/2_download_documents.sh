@@ -26,8 +26,11 @@ rm --force $LOGFILE
 mkdir --parents "$HOME/Documents/PiDP_11"
 pushd "$HOME/Documents/PiDP_11" > /dev/null
   echo "PiDP 11 Manual: \$HOME/Documents/PiDP_11" | tee --append $LOGFILE
-  curl --silent --location --remote-name \
-    https://obsolescence.dev/pidp11/PiDP-11_Manual.pdf
+  wget \
+    --no-clobber \
+    --append-output=$LOGFILE \
+    https://pidp.net/pidp11/PiDP-11_Manual.odt
+  lowriter --convert-to pdf PiDP-11_Manual.odt 2> /dev/null
 popd > /dev/null
 
 pushd "$HOME/Documents" > /dev/null

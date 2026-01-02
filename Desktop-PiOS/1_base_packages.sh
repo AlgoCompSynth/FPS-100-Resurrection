@@ -30,6 +30,7 @@ sudo apt-get install -qqy \
   build-essential \
   curl \
   file \
+  libreoffice-writer \
   lsb-release \
   lynx \
   man-db \
