@@ -13,7 +13,9 @@ If you have any problems, please open an issue at
 <https://github.com/AlgoCompSynth/FPS-100-Resurrection/issues/new>.
 
 This should work on any Raspberry Pi 4 or 5 with at least 2 GB of
-RAM.
+RAM. I've tested it with the latest Raspberry Pi OS based on
+Debian `trixie` on an 8 GB Raspberry Pi 4 and a 16 GB Raspberry Pi
+5.
 
 ## microSD card
 
@@ -39,23 +41,22 @@ high-speed 128 GB cards are common. I'd recommend a fast 64 GB
 card.
 
 Use the [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
+Make sure you have version 2.0.0 or later; the user interface is
+different and much better! Insert your SD card in a built-in or attached
+SD card read/write device and start the imager:
 
-1. Set the Operating System to "Raspberry Pi OS (64-bit).
-2. Set the Storage to your microSD card.
-3. Press 'Next'. Choose the "Edit Settings" button. On the "General" tab:
-
-    a. Set the hostname you want.
-    b. Set the username to "pi" and supply a strong password.
-    c. Configure the wireless LAN and set the locale settings.
-
-    On the "Services" tab, select "Enable SSH" and "Use password authentication".
-
-    On the "Options" tab, select all the options. Go back and check the other
-    two tabs and then press the "Save" button.
-
-4. You will be back on the "Use OS Customization" dialog box. Press the "Yes"
-button, and then press the "Yes" button on the "Warning" dialog box to flash
-and verify the microSD card.
+1. Select your Raspberry Pi device.
+2. Set the Operating System to "Raspberry Pi OS (64-bit).
+3. Set the Storage Device to your microSD card. Make sure this is the
+microSD card and not one of the disk drives on your machine!!
+4. Customisation: 
+    a. Choose hostname - set the hostname you want.
+    b. Localisation - set your country, time zone and keyboard layout.
+    c. Choose username - the username must be "pi"; select a strong password.
+    d. Choose Wi-Fi - enter your Wi-Fi credentials.
+    e. SSH Authentication - "Enable SSH" and "Use password authentication."
+    f. Raspberry Pi Connect - skip this; you can enable it later if you want to use it.
+5. Write image: "Write". Wait. Then "I understand, erase and write."
 
 ## Connecting with secure shell (SSH)
 
@@ -72,7 +73,7 @@ The first time you do this, you will see this:
 ```
 $ ssh pi@partch.local
 The authenticity of host 'partch.local (192.168.1.32)' can't be established.
-ED25519 key fingerprint is SHA256:GoY1tFrV4PjDdc8RMYatzDUV0f4Oe1jLs2bfbiJfJjQ.
+ED25519 key fingerprint is SHA256:<some gibberish the machines understand>.
 This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
@@ -127,36 +128,10 @@ should open an issue at
 The installation takes place in the directory
 `FPS-100-Resurrection/Desktop-PiOS`, so `cd` into that directory. 
 
-## Document downloads
-
-```
-./1_download_documents.sh
-```
-
-downloads some documents and the FPS-100 software. The documents
-include 
-    - the PiDP 11 Manual, 
-    - a collection of DEC pdp11 manuals,
-    - a collection of FPS-100 manuals, and
-    - a collection of AP-120B manuals.
-
-```
-$ ./1_download_documents.sh 
-
-* Download Documents *
-PiDP 11 Manual: $HOME/Documents/PiDP_11
-DEC Manuals: $HOME/Documents/DEC
-FPS-100 Manuals: $HOME/Documents/FPS-100
-AP-120B Manuals: $HOME/Documents/AP-120B
-
-Downloading fresh copy of FPS software to $HOME/fps100sw
-* Finished Download Documents *
-```
-
 ## Base packages
 
 ```
-./2_base_packages.sh
+./1_base_packages.sh
 ```
 
 will do a full upgrade, `autoremove` any obsoleted packages, and then
@@ -180,6 +155,32 @@ Configuration file '/etc/initramfs-tools/initramfs.conf'
       Z     : start a shell to examine the situation
  The default action is to keep your current version.
 *** initramfs.conf (Y/I/N/O/D/Z) [default=N] ?
+```
+
+## Document downloads
+
+```
+./2_download_documents.sh
+```
+
+downloads some documents and the FPS-100 software. The documents
+include 
+    - the PiDP 11 Manual, 
+    - a collection of DEC pdp11 manuals,
+    - a collection of FPS-100 manuals, and
+    - a collection of AP-120B manuals.
+
+```
+$ ./1_download_documents.sh 
+
+* Download Documents *
+PiDP 11 Manual: $HOME/Documents/PiDP_11
+DEC Manuals: $HOME/Documents/DEC
+FPS-100 Manuals: $HOME/Documents/FPS-100
+AP-120B Manuals: $HOME/Documents/AP-120B
+
+Downloading fresh copy of FPS software to $HOME/fps100sw
+* Finished Download Documents *
 ```
 
 ## Installing the PiDP 11 software
