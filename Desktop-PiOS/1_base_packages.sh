@@ -9,17 +9,18 @@ mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/1_base_packages.log
 rm --force $LOGFILE
 
-sudo cp locale.gen /etc/locale.gen
-sudo locale-gen
-
-echo ""
-echo "Update"
 export DEBIAN_FRONTEND=noninteractive
+echo "Update"
 sudo apt-get update -qq \
   >> $LOGFILE
-echo "Starting full upgrade"
-echo "Choose the default for any configuration file updates"
-sudo apt-get full-upgrade -qqy
+echo "Upgrade"
+# https://debian-handbook.info/browse/stable/sect.automatic-upgrades.html
+yes '' \
+  | sudo apt-get -qqy \
+  -o Dpkg::Options::="--force-confdef" \
+  -o Dpkg::Options::="--force-confold" \
+  dist-upgrade \
+  >> $LOGFILE
 echo "Autoremove"
 sudo apt-get autoremove -qqy \
   >> $LOGFILE
