@@ -70,6 +70,12 @@ pushd "$HOME/Documents/PiDP_11" > /dev/null
 popd > /dev/null
 
 pushd "$HOME/Documents" > /dev/null
+  echo "Cloning Usagi Electric Repository"
+  git clone https://github.com/Nakazoto/FloatingPointSystems.git
+
+popd > /dev/null
+
+pushd "$HOME/Documents" > /dev/null
   echo "Bitsavers FPS software" | tee --append $LOGFILE
   recursive_wget https://bitsavers.org/bits/FloatingPointSystems/FPS100 1 $LOGFILE
   pushd $HOME/Documents/bitsavers.org/bits/FloatingPointSystems/FPS100/ > /dev/null
