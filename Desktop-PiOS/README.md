@@ -91,7 +91,8 @@ As they say in the movies, "You're in!"
 ```
 $ ssh pi@partch.local 
 pi@partch.local's password: 
-Linux partch 6.12.25+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.25-1+rpt1 (2025-04-30) aarch64
+Linux partch 6.12.47+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.47-1+rpt1 (2025-09-16) aarch64
+
 
 The programs included with the Debian GNU/Linux system are free software;
 the exact distribution terms for each program are described in the
@@ -99,7 +100,7 @@ individual files in /usr/share/doc/*/copyright.
 
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
-Last login: Mon May 12 17:17:58 2025
+Last login: Sat Jan 03 17:17:58 2026
 pi@partch:~ $
 ```
 
@@ -134,28 +135,9 @@ The installation takes place in the directory
 ./1_base_packages.sh
 ```
 
-will do a full upgrade, `autoremove` any obsoleted packages, and then
-install some basic command line conveniences, including the `vim`
+will do a full Debin `dist-upgrade`, `autoremove` any obsoleted packages,
+and then install some basic command line conveniences, including the `vim`
 editor.
-
-At the time of this writing, the full upgrade step requires some manual
-intervention, so its output is not logged. That might go away in future
-Raspberry Pi updates, but as of 2025-08-02, it will stop and ask you
-how you want to deal with an updated configuration file. The default
-will work, so just press `Enter` if this happens.
-
-```
-Configuration file '/etc/initramfs-tools/initramfs.conf'
- ==> Modified (by you or by a script) since installation.
- ==> Package distributor has shipped an updated version.
-   What would you like to do about it ?  Your options are:
-    Y or I  : install the package maintainer's version
-    N or O  : keep your currently-installed version
-      D     : show the differences between the versions
-      Z     : start a shell to examine the situation
- The default action is to keep your current version.
-*** initramfs.conf (Y/I/N/O/D/Z) [default=N] ?
-```
 
 ## Document downloads
 
@@ -171,16 +153,29 @@ include
     - a collection of AP-120B manuals.
 
 ```
-$ ./1_download_documents.sh 
+❯ ./2_download_documents.sh 
 
 * Download Documents *
-PiDP 11 Manual: $HOME/Documents/PiDP_11
-DEC Manuals: $HOME/Documents/DEC
-FPS-100 Manuals: $HOME/Documents/FPS-100
-AP-120B Manuals: $HOME/Documents/AP-120B
-
-Downloading fresh copy of FPS software to $HOME/fps100sw
+PiDP 11 / SIMH / RSX-11M Manuals: $HOME/Documents/PiDP_11
+convert /home/pi/Documents/PiDP_11/PiDP-11_Manual.odt as a Writer document -> /home/pi/Documents/PiDP_11/PiDP-11_Manual.pdf using filter : writer_pdf_Export
+convert /home/pi/Documents/PiDP_11/simh_doc.doc as a Writer document -> /home/pi/Documents/PiDP_11/simh_doc.pdf using filter : writer_pdf_Export
+convert /home/pi/Documents/PiDP_11/pdp11_doc.doc as a Writer document -> /home/pi/Documents/PiDP_11/pdp11_doc.pdf using filter : writer_pdf_Export
+Cloning Usagi Electric Repository
+Cloning into 'FloatingPointSystems'...
+remote: Enumerating objects: 842, done.
+remote: Counting objects: 100% (69/69), done.
+remote: Compressing objects: 100% (56/56), done.
+remote: Total 842 (delta 25), reused 48 (delta 13), pack-reused 773 (from 2)
+Receiving objects: 100% (842/842), 1.08 GiB | 33.86 MiB/s, done.
+Resolving deltas: 100% (134/134), done.
+Updating files: 100% (694/694), done.
+Bitsavers FPS software
+Bitsavers FPS documents
+..Bitsavers FPS AP-120B
+..Bitsavers FPS FPS-100/3000/5000
+..Bitsavers FPS miscellaneous
 * Finished Download Documents *
+
 ```
 
 ## Installing the PiDP 11 software
@@ -205,9 +200,8 @@ After the unattended install finishes, `3_install_pidp.sh`
 restores the original installer in case you want to
 change something.
 
-
 ```
-$ ./3_install_pidp.sh 
+❯ ./3_install_pidp.sh
 
 * Install PiDP *
 /opt ~/Projects/FPS-100-Resurrection/Desktop-PiOS
@@ -236,6 +230,7 @@ $ sudo raspi-config
 $ sudo reboot
 
 * Finished Install PiDP *
+
 ```
 
 ## Setup for remote access
