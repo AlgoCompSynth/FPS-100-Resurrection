@@ -19,7 +19,7 @@ rm --force $LOGFILE
 
 mkdir --parents "$HOME/Documents/PiDP_11"
 pushd "$HOME/Documents/PiDP_11" > /dev/null
-  echo "PiDP 11 / SIMH / RSX-11M Manuals: \$HOME/Documents/PiDP_11" | tee --append $LOGFILE
+  echo "PiDP 11 / SIMH / PDP-11 / RSX-11M Manuals: \$HOME/Documents/PiDP_11" | tee --append $LOGFILE
   single_wget \
     https://pidp.net/pidp11 \
     PiDP-11_Manual.odt \

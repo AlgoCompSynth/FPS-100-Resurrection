@@ -135,9 +135,20 @@ The installation takes place in the directory
 ./1_base_packages.sh
 ```
 
-will do a full Debin `dist-upgrade`, `autoremove` any obsoleted packages,
+will do a full Debian `dist-upgrade`, `autoremove` any obsoleted packages,
 and then install some basic command line conveniences, including the `vim`
 editor.
+
+```
+$ ./1_base_packages.sh 
+
+* Base Packages *
+Update
+Upgrade
+Autoremove
+Base packages
+* Finished Base Packages *
+```
 
 ## Document downloads
 
@@ -153,10 +164,10 @@ include
     - a collection of AP-120B manuals.
 
 ```
-❯ ./2_download_documents.sh 
+$ ./2_download_documents.sh 
 
 * Download Documents *
-PiDP 11 / SIMH / RSX-11M Manuals: $HOME/Documents/PiDP_11
+PiDP 11 / SIMH / PDP-11 / RSX-11M Manuals: $HOME/Documents/PiDP_11
 convert /home/pi/Documents/PiDP_11/PiDP-11_Manual.odt as a Writer document -> /home/pi/Documents/PiDP_11/PiDP-11_Manual.pdf using filter : writer_pdf_Export
 convert /home/pi/Documents/PiDP_11/simh_doc.doc as a Writer document -> /home/pi/Documents/PiDP_11/simh_doc.pdf using filter : writer_pdf_Export
 convert /home/pi/Documents/PiDP_11/pdp11_doc.doc as a Writer document -> /home/pi/Documents/PiDP_11/pdp11_doc.pdf using filter : writer_pdf_Export
@@ -166,17 +177,14 @@ remote: Enumerating objects: 842, done.
 remote: Counting objects: 100% (69/69), done.
 remote: Compressing objects: 100% (56/56), done.
 remote: Total 842 (delta 25), reused 48 (delta 13), pack-reused 773 (from 2)
-Receiving objects: 100% (842/842), 1.08 GiB | 33.86 MiB/s, done.
+Receiving objects: 100% (842/842), 1.08 GiB | 10.92 MiB/s, done.
 Resolving deltas: 100% (134/134), done.
 Updating files: 100% (694/694), done.
-Bitsavers FPS software
-Bitsavers FPS documents
-..Bitsavers FPS AP-120B
-..Bitsavers FPS FPS-100/3000/5000
-..Bitsavers FPS miscellaneous
 * Finished Download Documents *
-
 ```
+When finished, the PiDP-11 / SIMH / PDP-11 / RSX-11M documents are in
+`$HOME/Documents/PiDP_11` and the FPS document / software repository
+is in `$HOME/Documents/FloatingPointSystems`.
 
 ## Installing the PiDP 11 software
 
@@ -201,7 +209,7 @@ restores the original installer in case you want to
 change something.
 
 ```
-❯ ./3_install_pidp.sh
+$ ./3_install_pidp.sh 
 
 * Install PiDP *
 /opt ~/Projects/FPS-100-Resurrection/Desktop-PiOS
@@ -230,8 +238,30 @@ $ sudo raspi-config
 $ sudo reboot
 
 * Finished Install PiDP *
+```
+
+## Optional Bitsavers document download
+
+Previous versions of this package downloaded relevant FPS
+documentation from
+<https://bitsavers.org/pdf/floatingPointSystems/>. This has
+been superseded by the GitHub repository described above.
+I've moved the code to download directly from Bitsavers to
+an optional script, `4_bitsavers_fps_docs.sh`.
 
 ```
+$ ./4_bitsavers_fps_docs.sh 
+
+* Bitsavers FPS Documents *
+Generic FPS
+AP-120B
+FPS-100/3000/5000
+Miscellaneous
+* Finished Bitsavers FPS Documents *
+```
+
+When finished, the documents will be in
+`$HOME/Documents/bitsavers.org/pdf/floatingPointSystems`.
 
 ## Setup for remote access
 
