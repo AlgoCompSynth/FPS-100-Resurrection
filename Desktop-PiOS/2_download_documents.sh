@@ -2,6 +2,9 @@
 
 set -e
 
+echo ""
+echo "* Download Documents *"
+
 # first parameter is URL, second is file, third is LOGFILE
 function single_wget () {
   wget \
@@ -9,23 +12,6 @@ function single_wget () {
     --append-output=$3 \
     $1/$2
 }
-
-# first parameter is URL, second is levels, third is LOGFILE
-function recursive_wget () {
-  wget \
-    --recursive \
-    --no-parent \
-    --accept pdf,zip,jpg,jpeg,tif,tap,txt \
-    --level=$2 \
-    --convert-links \
-    --backup-converted \
-    --adjust-extension \
-    --append-output=$3 \
-    $1
-}
-
-echo ""
-echo "* Download Documents *"
 
 mkdir --parents $HOME/Logfiles
 export LOGFILE=$HOME/Logfiles/2_download_documents.log
@@ -72,38 +58,6 @@ popd > /dev/null
 pushd "$HOME/Documents" > /dev/null
   echo "Cloning Usagi Electric Repository"
   git clone https://github.com/Nakazoto/FloatingPointSystems.git
-
-popd > /dev/null
-
-pushd "$HOME/Documents" > /dev/null
-  echo "Bitsavers FPS software" | tee --append $LOGFILE
-  recursive_wget https://bitsavers.org/bits/FloatingPointSystems/FPS100 1 $LOGFILE
-  pushd $HOME/Documents/bitsavers.org/bits/FloatingPointSystems/FPS100/ > /dev/null
-    unzip -qqo fps100sw.zip
-    single_wget \
-      https://bitsavers.org/bits/FloatingPointSystems/FPS100 \
-      fps100flxDamaged.tap \
-      $LOGFILE
-
-  popd > /dev/null
-
-  echo "Bitsavers FPS documents" | tee --append $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems 1 $LOGFILE
-  echo "..Bitsavers FPS AP-120B" | tee --append $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/AP-120B 1 $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/AP-120B/AP-120B_Schematics/ 1 $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/AP-120B/GE_AP-CT/ 1 $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/brochures/ 1 $LOGFILE
-  echo "..Bitsavers FPS FPS-100/3000/5000" | tee --append $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-100/ 1 $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-100/FPS-100_Schematics/ 2 $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-100/pictures/ 2 $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-3000/ 1 $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-5000/ 1 $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/GE_RDCP_Processor/ 1 $LOGFILE
-  echo "..Bitsavers FPS miscellaneous" | tee --append $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/FPS-164/ 1 $LOGFILE
-  recursive_wget https://bitsavers.org/pdf/floatingPointSystems/T_Series/ 1 $LOGFILE
 
 popd > /dev/null
 
