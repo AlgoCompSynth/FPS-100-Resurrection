@@ -1,0 +1,12 @@
+
+# Container
+export DBX_CONTAINER_IMAGE="docker.io/library/debian:trixie-backports"
+export DBX_CONTAINER_NAME="Vibe-Resurrection"
+export DBX_CONTAINER_HOME_PREFIX="$HOME/dbx-homes"
+export DBX_CONTAINER_DIRECTORY="$DBX_CONTAINER_HOME_PREFIX/$DBX_CONTAINER_NAME"
+export DBX_CONTAINER_HOSTNAME=$DBX_CONTAINER_NAME
+
+# Ollama
+export OLLAMA_TARBALL="ollama-linux-amd64.tar.zst"
+export OLLAMA_VERSION="v0.14.3"
+export OLLAMA_URL="https://github.com/ollama/ollama/releases/download/${OLLAMA_VERSION}/${OLLAMA_TARBALL}"
