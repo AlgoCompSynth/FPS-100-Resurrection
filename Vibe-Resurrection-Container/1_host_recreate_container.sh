@@ -24,7 +24,7 @@ distrobox create \
   --hostname $DBX_CONTAINER_HOSTNAME \
   --pull \
   --home $DBX_CONTAINER_DIRECTORY \
-  --additional-packages "systemd libpam-systemd apt-file build-essential gfortran git info plocate python3-full time vim zstd" \
+  --additional-packages "systemd libpam-systemd apt-file build-essential gfortran git libreoffice-writer info plocate python3-full time vim zstd" \
   --nvidia \
   --init
   
