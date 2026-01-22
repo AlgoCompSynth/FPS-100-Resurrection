@@ -11,11 +11,11 @@ pushd $HOME/.local > /dev/null
   wget --no-clobber --quiet $OLLAMA_URL
   echo "Extracting binaries to $HOME/.local"
   tar xf $OLLAMA_TARBALL
-  echo "Creating 'ollama-serve' command"
-  echo 'ollama serve > $LOGFILES/ollama.log 2>&1 &' > ./bin/ollama-serve
-  chmod +x ./bin/ollama-serve
+  echo "Creating 'serve-ollama' command"
+  echo 'ollama serve > $LOGFILES/ollama.log 2>&1 &' > ./bin/serve-ollama
+  chmod +x ./bin/serve-ollama
   echo "Starting ollama server"
-  ./bin/ollama-serve
+  ./bin/serve-ollama
   echo "Waiting 30 seconds for startup"
   sleep 30
 
