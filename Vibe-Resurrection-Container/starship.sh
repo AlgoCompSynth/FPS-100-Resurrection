@@ -3,7 +3,7 @@
 set -e
 
 echo ""
-echo "** Starship **"
+echo "*** Starship ***"
 
 # https://starship.rs/guide/#%F0%9F%9A%80-installation
 pushd /tmp > /dev/null
@@ -22,4 +22,4 @@ cp starship.toml $HOME/.config/starship.toml
 echo "Appending Starship init to \$HOME/.bashrc"
 echo 'eval "$(starship init bash)"' >> $HOME/.bashrc
 
-echo "** Finished Starship **"
+echo "*** Finished Starship ***"

@@ -3,7 +3,7 @@
 set -e
 
 echo ""
-echo "* Terminal Setup *"
+echo "** Terminal Setup **"
 
 echo "Creating \$HOME/.local/bin \$HOME/Logfiles"
 mkdir --parents $HOME/.local/bin $HOME/Logfiles
@@ -19,4 +19,4 @@ cp vimrc $HOME/.vimrc
 ./aider.sh
 ./pkg_db_updates.sh
 
-echo "* Finished Terminal Setup *"
+echo "** Finished Terminal Setup **"

@@ -3,7 +3,7 @@
 set -e
 
 echo ""
-echo "** Ollama **"
+echo "*** Ollama ***"
 
 source ./set_envars
 pushd $HOME/.local > /dev/null
@@ -17,4 +17,4 @@ pushd $HOME/.local > /dev/null
   
 popd > /dev/null
 
-echo "** Finished Ollama **"
+echo "*** Finished Ollama ***"

@@ -3,7 +3,7 @@
 set -e
 
 echo ""
-echo "** Aider **"
+echo "*** Aider ***"
 
 source ./set_envars
 python3 -m venv $AIDER_VENV
@@ -12,4 +12,4 @@ source $AIDER_VENV/bin/activate
     aider-install
     deactivate
 
-echo "** Finished Aider **"
+echo "*** Finished Aider ***"
