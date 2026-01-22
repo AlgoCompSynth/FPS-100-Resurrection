@@ -10,6 +10,7 @@ export DBX_CONTAINER_HOSTNAME=$DBX_CONTAINER_NAME
 export OLLAMA_TARBALL="ollama-linux-amd64.tar.zst"
 export OLLAMA_VERSION="v0.14.3"
 export OLLAMA_URL="https://github.com/ollama/ollama/releases/download/${OLLAMA_VERSION}/${OLLAMA_TARBALL}"
+export OLLAMA_API_BASE=http://127.0.0.1:11434
 
 # Python venvs
 export AIDER_VENV="$HOME/.python_venvs/aider"
