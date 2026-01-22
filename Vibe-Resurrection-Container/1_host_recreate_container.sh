@@ -2,6 +2,7 @@
 
 set -e
 
+echo "* Re-create Container *"
 echo ""
 echo "Setting environment variables"
 source ./set_envars
@@ -23,7 +24,7 @@ distrobox create \
   --hostname $DBX_CONTAINER_HOSTNAME \
   --pull \
   --home $DBX_CONTAINER_DIRECTORY \
-  --additional-packages "systemd libpam-systemd apt-file git info time vim zstd" \
+  --additional-packages "systemd libpam-systemd apt-file build-essential gfortran git info plocate python3-full time vim zstd" \
   --nvidia \
   --init
   
@@ -33,3 +34,5 @@ echo "It is downloading and installing basic packages."
 echo ""
 echo ""
 distrobox enter "$DBX_CONTAINER_NAME" -- ./2_terminal_setup.sh
+
+echo "* Finished Re-create Container *"
