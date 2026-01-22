@@ -28,6 +28,8 @@ distrobox create \
   --nvidia \
   --init
   
+echo "Copying 'set_envars' and $HOME/.ssh into $DBX_CONTAINER_DIRECTORY"
+cp -rp set_envars $HOME/.ssh $DBX_CONTAINER_DIRECTORY/
 echo "Entering $DBX_CONTAINER_NAME"
 echo "This will take some time."
 echo "It is downloading and installing basic packages."
