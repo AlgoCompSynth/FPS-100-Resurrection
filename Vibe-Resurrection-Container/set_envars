@@ -13,3 +13,7 @@ export OLLAMA_URL="https://github.com/ollama/ollama/releases/download/${OLLAMA_V
 
 # Python venva
 export AIDER_VENV="$HOME/.python_venvs/aider"
+
+# Directories
+export LOGFILES=$HOME/Logfiles; mkdir --parents $LOGFILES
+export PROJECTS=$HOME/Projects; mkdir --parents $PROJECTS
